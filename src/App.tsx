@@ -27,7 +27,7 @@ class App extends React.Component<{},IState> {
 
   public render() {
       if(this.state.loggedIn === true){
-         return <MainScreen/>
+         return <MainScreen person={this.state.person}/>
       }else{
         return <LoginScreen loginHandler={this.handleLoginChange}/>
       }
