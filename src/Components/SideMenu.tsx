@@ -11,6 +11,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import * as React from 'react'
 import 'src/App.css'
 
+
 interface IState {
     open: boolean,
 }
@@ -28,11 +29,7 @@ export default class SideMenu extends React.Component<IProps, IState> {
     }
 
     public handleDrawerOpen = () => {
-        this.setState({ open: true })
-    }
-
-    public handleDrawerClose = () => {
-        this.setState({ open: false })
+        this.setState({ open: !this.state.open})
     }
 
     public render() {
@@ -52,10 +49,10 @@ export default class SideMenu extends React.Component<IProps, IState> {
                     id="drawer"
                     anchor="right"
                     open={this.state.open}
-                    onClose = {() => this.handleDrawerClose()}
+                    onClose = {() => this.handleDrawerOpen()}
                 >
                     <div>
-                        <img className="profileImage" src={this.props.person.picture.data.url}/>
+                        {/*<img className="profileImage" src={this.props.person.picture.data.url}/>*/}
                     </div>
                     <Divider />
                     <List>
