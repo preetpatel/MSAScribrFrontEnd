@@ -5,11 +5,9 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import MailIcon from '@material-ui/icons/Mail';
 import MenuIcon from '@material-ui/icons/Menu';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
-import clsx from 'clsx';
 import * as React from 'react'
 import 'src/App.css'
 
@@ -39,13 +37,13 @@ export default class SideMenu extends React.Component<IProps, IState> {
 
     public render() {
         return (
-            <div onKeyDown={() => this.handleDrawerClose}>
+            <div className="menuButtonDiv">
                 <IconButton
                     color="inherit"
                     aria-label="Open drawer"
                     edge="end"
                     onClick={this.handleDrawerOpen}
-                    className={clsx(this.state.open)}
+                    className="menuButton"
                 >
                     <MenuIcon />
                 </IconButton>
@@ -57,10 +55,7 @@ export default class SideMenu extends React.Component<IProps, IState> {
                     onClose = {() => this.handleDrawerClose()}
                 >
                     <div>
-                        <IconButton onClick={this.handleDrawerClose}>
-                            <ChevronRightIcon/>
-                        </IconButton>
-                        <img src={this.props.person.picture.data.url}/>
+                        <img className="profileImage" src={this.props.person.picture.data.url}/>
                     </div>
                     <Divider />
                     <List>

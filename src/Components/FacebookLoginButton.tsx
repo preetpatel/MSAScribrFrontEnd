@@ -26,7 +26,7 @@ class FacebookLoginButton extends React.Component<IProps,{}> {
     return (
       <FacebookLogin
         appId="2373293366050107"
-        autoLoad={false}
+        autoLoad={true}
         fields="name,email,picture"
         scope="public_profile,user_photos"
         textButton = "Please Login with Facebook to Continue"

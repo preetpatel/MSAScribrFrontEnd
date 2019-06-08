@@ -1,5 +1,5 @@
 import * as React from 'react';
-import SideMenu from 'src/Components/SideMenu'
+import Header from 'src/Components/Header'
 interface IProps {
     person: object
 }
@@ -12,7 +12,7 @@ export default class MainScreen extends React.Component<IProps, {}>{
 
     public render() {
         return (<div>
-            <SideMenu person={this.props.person} />
+            <Header person={this.props.person}/>
             <h1> Hi from main screen </h1>
         </div>)
     }
