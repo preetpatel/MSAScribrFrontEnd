@@ -28,7 +28,7 @@ export default class SideMenu extends React.Component<IProps, IState> {
         }
     }
 
-    public handleDrawerOpen = () => {
+    public handleDrawerChange = () => {
         this.setState({ open: !this.state.open})
     }
 
@@ -39,7 +39,7 @@ export default class SideMenu extends React.Component<IProps, IState> {
                     color="inherit"
                     aria-label="Open drawer"
                     edge="end"
-                    onClick={this.handleDrawerOpen}
+                    onClick={this.handleDrawerChange}
                     className="menuButton"
                 >
                     <MenuIcon />
@@ -49,7 +49,7 @@ export default class SideMenu extends React.Component<IProps, IState> {
                     id="drawer"
                     anchor="right"
                     open={this.state.open}
-                    onClose = {() => this.handleDrawerOpen()}
+                    onClose = {() => this.handleDrawerChange()}
                 >
                     <div>
                         {/*<img className="profileImage" src={this.props.person.picture.data.url}/>*/}
