@@ -64,7 +64,6 @@ export default class MainScreen extends React.Component<IProps,IState>{
     public render() {
         return (<div>
             <Header person={this.props.person} addVideo={this.addVideo}/>
-            <button onClick={this.callCaptionFunc}>Hello Press Me</button>
             <hr/>
             <ReactPlayer
                 ref = {this.setRef}
