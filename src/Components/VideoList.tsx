@@ -39,7 +39,7 @@ export default class VideoList extends React.Component<IProps,IState>{
                 {
                     "id" : 1,
                     "title" : "Try not to laugh challenge 😂 - Cognitive Services | Microsoft Azure",
-                    "videoURL" : "https://www.youtube.com/watch?v=5OS_J_mfNYI",
+                    "videoURL" : "https://www.youtube.com/embed/U6SlmoXWf3o",
                     // tslint:disable-next-line:object-literal-sort-keys
                     "thumbnailURL" : "https://i.ytimg.com/vi/5OS_J_mfNYI/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBeoJP0ynh-CBnGIPx7--OgbUEHCA",
                     "isFavourite" : "true"
@@ -47,7 +47,7 @@ export default class VideoList extends React.Component<IProps,IState>{
                 {
                     "id" : 2,
                     "title" : "HOW OLD? - CREATE A WEBSITE...FAST! | Microsoft Azure",
-                    "videoURL" : "https://www.youtube.com/watch?v=8tmeZ8oh_pA",
+                    "videoURL" : "https://www.youtube.com/embed/8tmeZ8oh_pA",
                     // tslint:disable-next-line:object-literal-sort-keys
                     "thumbnailURL" : "https://i.ytimg.com/vi/8tmeZ8oh_pA/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAyCGSFiiq_L8qussLnlTbJTD1TOA",
                     "isFavourite" : "false"
@@ -55,7 +55,7 @@ export default class VideoList extends React.Component<IProps,IState>{
                 {
                     "id" : 3,
                     "title" : "ARTIFICIAL INTELLIGENCE and MACHINE LEARNING | Microsoft Azure",
-                    "videoURL" : "https://www.youtube.com/watch?v=N7dmGJfHS6M&t=17s",
+                    "videoURL" : "https://www.youtube.com/embed/N7dmGJfHS6M&t=17s",
                     // tslint:disable-next-line:object-literal-sort-keys
                     "thumbnailURL" : "https://i.ytimg.com/vi/N7dmGJfHS6M/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAuzvFhwkJthTyw3ywVsdXNz2GEFw",
                     "isFavourite" : "false"
@@ -63,25 +63,41 @@ export default class VideoList extends React.Component<IProps,IState>{
                 {
                     "id" : 4,
                     "title" : "Learn SQL Database and RESTful Web API | Microsoft Azure",
-                    "videoURL" : "https://www.youtube.com/watch?v=U6SlmoXWf3o",
+                    "videoURL" : "https://www.youtube.com/embed/U6SlmoXWf3o",
                     // tslint:disable-next-line:object-literal-sort-keys
                     "thumbnailURL" : "https://i.ytimg.com/vi/U6SlmoXWf3o/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLDNSQHBKYKvK1IoD4COj77sm0Uzfg",
                     "isFavourite" : "false"
+                }, 
+                {
+                    "id" : 1,
+                    "title" : "Try not to laugh challenge 😂 - Cognitive Services | Microsoft Azure",
+                    "videoURL" : "https://www.youtube.com/embed/U6SlmoXWf3o",
+                    // tslint:disable-next-line:object-literal-sort-keys
+                    "thumbnailURL" : "https://i.ytimg.com/vi/5OS_J_mfNYI/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBeoJP0ynh-CBnGIPx7--OgbUEHCA",
+                    "isFavourite" : "true"
                 },
                 {
                     "id" : 2,
                     "title" : "HOW OLD? - CREATE A WEBSITE...FAST! | Microsoft Azure",
-                    "videoURL" : "https://www.youtube.com/watch?v=8tmeZ8oh_pA",
+                    "videoURL" : "https://www.youtube.com/embed/8tmeZ8oh_pA",
                     // tslint:disable-next-line:object-literal-sort-keys
                     "thumbnailURL" : "https://i.ytimg.com/vi/8tmeZ8oh_pA/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAyCGSFiiq_L8qussLnlTbJTD1TOA",
                     "isFavourite" : "false"
                 },
                 {
-                    "id" : 2,
-                    "title" : "HOW OLD? - CREATE A WEBSITE...FAST! | Microsoft Azure",
-                    "videoURL" : "https://www.youtube.com/watch?v=8tmeZ8oh_pA",
+                    "id" : 3,
+                    "title" : "ARTIFICIAL INTELLIGENCE and MACHINE LEARNING | Microsoft Azure",
+                    "videoURL" : "https://www.youtube.com/embed/N7dmGJfHS6M&t=17s",
                     // tslint:disable-next-line:object-literal-sort-keys
-                    "thumbnailURL" : "https://i.ytimg.com/vi/8tmeZ8oh_pA/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAyCGSFiiq_L8qussLnlTbJTD1TOA",
+                    "thumbnailURL" : "https://i.ytimg.com/vi/N7dmGJfHS6M/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAuzvFhwkJthTyw3ywVsdXNz2GEFw",
+                    "isFavourite" : "false"
+                },
+                {
+                    "id" : 4,
+                    "title" : "Learn SQL Database and RESTful Web API | Microsoft Azure",
+                    "videoURL" : "https://www.youtube.com/embed/U6SlmoXWf3o",
+                    // tslint:disable-next-line:object-literal-sort-keys
+                    "thumbnailURL" : "https://i.ytimg.com/vi/U6SlmoXWf3o/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLDNSQHBKYKvK1IoD4COj77sm0Uzfg",
                     "isFavourite" : "false"
                 }
             ]
