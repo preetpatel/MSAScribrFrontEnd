@@ -69,6 +69,7 @@ export default class MainScreen extends React.Component<IProps,IState>{
                 ref = {this.setRef}
                 controls = {true}
                 url={this.state.playingURL}
+                playing = {true}
                 config={{
                   youtube: {
                     playerVars: { showinfo: 1 },
@@ -78,8 +79,8 @@ export default class MainScreen extends React.Component<IProps,IState>{
             }
             />
             <hr/>
-            <VideoList mount={this.listMounted}/>
-            <CaptionArea/>
+            <VideoList play={this.updateURL} mount={this.listMounted}/>
+            <CaptionArea play={this.updateURL}/>
         </div>)
     }
 }

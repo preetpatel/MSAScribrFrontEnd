@@ -6,6 +6,7 @@ interface IState{
 
 interface IProps{
     mount:any
+    play:any
 }
 
 export default class VideoList extends React.Component<IProps,IState>{
@@ -25,7 +26,7 @@ export default class VideoList extends React.Component<IProps,IState>{
     }
 
     public playVideo = (videoUrl:string) => {
-        console.log("Playing video " + videoUrl);     
+        this.props.play(videoUrl)
     }
 
     public updateList = () => {
@@ -45,14 +46,13 @@ export default class VideoList extends React.Component<IProps,IState>{
                     "title" : "Title of the video",
                     "videoURL" : "https://www.youtube.com/watch?v=CYmTmWlsNhg",
                     // tslint:disable-next-line:object-literal-sort-keys
-                    "thumbnail" : "https://i.ytimg.com/vi/sDjLflpTm4o/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLALkmnewoGKLtGFmHSiDt0bDTLLgw",
+                    "thumbnailURL" : "https://i.ytimg.com/vi/sDjLflpTm4o/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLALkmnewoGKLtGFmHSiDt0bDTLLgw",
                     "isFavourite" : "false"
                 }
             ]
         }
         const output:any[] = []
         result.videos.forEach(video => {
-            console.log(video)
             output.push(<tr onClick={() => this.playVideo(video.videoURL)}>
                 <td>{video.isFavourite === "true"?"Is favourite":"Not Favourite"}</td>
                 <td><img src={video.thumbnailURL} alt="Thumbnail"/></td>
@@ -60,7 +60,6 @@ export default class VideoList extends React.Component<IProps,IState>{
                 <td><button onClick={() => this.deleteVideo(video)}>Delete Video</button></td>
             </tr>)
         });
-        console.log(output)
         this.setState({videoList:output},() => this.forceUpdate())
     }
 
