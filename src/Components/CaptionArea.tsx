@@ -9,7 +9,11 @@ interface IState {
     result: any
 }
 
-export default class CaptionArea extends React.Component<{}, IState>{
+interface IProps {
+    play: any
+}
+
+export default class CaptionArea extends React.Component<IProps, IState>{
     public constructor(props: any) {
         super(props);
         this.state = {
@@ -39,7 +43,8 @@ export default class CaptionArea extends React.Component<{}, IState>{
                                 "matchingCaption": "I happen to have a working quantum computer.",
                                 "time": "19",
                                 "timedURL": "3 19",
-                            }
+                            },
+                            
                         ],
                         "title": "Title of the vide o",
                         "videoID": "2",
@@ -54,13 +59,13 @@ export default class CaptionArea extends React.Component<{}, IState>{
     }
 
     public handleTableClick = (timedURL: string) => {
-        console.log(timedURL)
+        this.props.play(timedURL)
     }
 
     public makeTableBody = (searchObject: any) => {
         const toRet: any[] = [];
         const errorCase = <div><p>Sorry you need to still search</p></div>
-        if(!("videos" in searchObject)){
+        if (!("videos" in searchObject)) {
             return errorCase
         }
         searchObject.videos.forEach((video: any) => {
@@ -73,7 +78,7 @@ export default class CaptionArea extends React.Component<{}, IState>{
                     </tr>)
             })
         });
-        if(toRet.length === 0){
+        if (toRet.length === 0) {
             return errorCase
         }
         return toRet
@@ -113,7 +118,7 @@ export default class CaptionArea extends React.Component<{}, IState>{
                         <th>Caption</th>
                         <th>Video</th>
                     </tr>
-                    <tbody>
+                    <tbody className="captionTable">
                         {this.makeTableBody(this.state.result)}
                     </tbody>
                 </table>

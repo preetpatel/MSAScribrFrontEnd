@@ -9,6 +9,7 @@ interface IState{
 
 interface IProps{
     mount:any
+    play:any
 }
 
 export default class VideoList extends React.Component<IProps,IState>{
@@ -28,7 +29,7 @@ export default class VideoList extends React.Component<IProps,IState>{
     }
 
     public playVideo = (videoUrl:string) => {
-        console.log("Playing video " + videoUrl);     
+        this.props.play(videoUrl)
     }
 
     public updateList = () => {
@@ -87,7 +88,6 @@ export default class VideoList extends React.Component<IProps,IState>{
         }
         const output:any[] = []
         result.videos.forEach(video => {
-            console.log(video)
             output.push(<tr onClick={() => this.playVideo(video.videoURL)}>
                 <td className="align-middle">{video.isFavourite === "true"?<Star/>:<StarBorder/>}</td>
                 <td className="align-middle"><img src={video.thumbnailURL} width="100px" alt="Thumbnail"/></td>
@@ -95,7 +95,6 @@ export default class VideoList extends React.Component<IProps,IState>{
                 <td className="align-middle"><button onClick={() => this.deleteVideo(video)}><Close/></button></td>
             </tr>)
         });
-        console.log(output)
         this.setState({videoList:output},() => this.forceUpdate())
     }
 
