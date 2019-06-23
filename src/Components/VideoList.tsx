@@ -1,3 +1,6 @@
+import Close from '@material-ui/icons/Close'
+import Star from '@material-ui/icons/Star'
+import StarBorder from '@material-ui/icons/StarBorder'
 import * as React from 'react'
 
 interface IState{
@@ -45,7 +48,39 @@ export default class VideoList extends React.Component<IProps,IState>{
                     "title" : "HOW OLD? - CREATE A WEBSITE...FAST! | Microsoft Azure",
                     "videoURL" : "https://www.youtube.com/watch?v=8tmeZ8oh_pA",
                     // tslint:disable-next-line:object-literal-sort-keys
-                    "thumbnailURL" : "https://i.ytimg.com/vi/sDjLflpTm4o/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLALkmnewoGKLtGFmHSiDt0bDTLLgw",
+                    "thumbnailURL" : "https://i.ytimg.com/vi/8tmeZ8oh_pA/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAyCGSFiiq_L8qussLnlTbJTD1TOA",
+                    "isFavourite" : "false"
+                },
+                {
+                    "id" : 2,
+                    "title" : "HOW OLD? - CREATE A WEBSITE...FAST! | Microsoft Azure",
+                    "videoURL" : "https://www.youtube.com/watch?v=8tmeZ8oh_pA",
+                    // tslint:disable-next-line:object-literal-sort-keys
+                    "thumbnailURL" : "https://i.ytimg.com/vi/8tmeZ8oh_pA/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAyCGSFiiq_L8qussLnlTbJTD1TOA",
+                    "isFavourite" : "false"
+                },
+                {
+                    "id" : 2,
+                    "title" : "HOW OLD? - CREATE A WEBSITE...FAST! | Microsoft Azure",
+                    "videoURL" : "https://www.youtube.com/watch?v=8tmeZ8oh_pA",
+                    // tslint:disable-next-line:object-literal-sort-keys
+                    "thumbnailURL" : "https://i.ytimg.com/vi/8tmeZ8oh_pA/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAyCGSFiiq_L8qussLnlTbJTD1TOA",
+                    "isFavourite" : "false"
+                },
+                {
+                    "id" : 2,
+                    "title" : "HOW OLD? - CREATE A WEBSITE...FAST! | Microsoft Azure",
+                    "videoURL" : "https://www.youtube.com/watch?v=8tmeZ8oh_pA",
+                    // tslint:disable-next-line:object-literal-sort-keys
+                    "thumbnailURL" : "https://i.ytimg.com/vi/8tmeZ8oh_pA/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAyCGSFiiq_L8qussLnlTbJTD1TOA",
+                    "isFavourite" : "false"
+                },
+                {
+                    "id" : 2,
+                    "title" : "HOW OLD? - CREATE A WEBSITE...FAST! | Microsoft Azure",
+                    "videoURL" : "https://www.youtube.com/watch?v=8tmeZ8oh_pA",
+                    // tslint:disable-next-line:object-literal-sort-keys
+                    "thumbnailURL" : "https://i.ytimg.com/vi/8tmeZ8oh_pA/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAyCGSFiiq_L8qussLnlTbJTD1TOA",
                     "isFavourite" : "false"
                 }
             ]
@@ -54,10 +89,10 @@ export default class VideoList extends React.Component<IProps,IState>{
         result.videos.forEach(video => {
             console.log(video)
             output.push(<tr onClick={() => this.playVideo(video.videoURL)}>
-                <td>{video.isFavourite === "true"?"Is favourite":"Not Favourite"}</td>
-                <td><img src={video.thumbnailURL} alt="Thumbnail"/></td>
-                <td><b>{video.title}</b></td>
-                <td><button onClick={() => this.deleteVideo(video)}>Delete Video</button></td>
+                <td className="align-middle">{video.isFavourite === "true"?<Star/>:<StarBorder/>}</td>
+                <td className="align-middle"><img src={video.thumbnailURL} width="100px" alt="Thumbnail"/></td>
+                <td className="align-middle"><b>{video.title}</b></td>
+                <td className="align-middle"><button onClick={() => this.deleteVideo(video)}><Close/></button></td>
             </tr>)
         });
         console.log(output)
@@ -77,14 +112,9 @@ export default class VideoList extends React.Component<IProps,IState>{
 
     public render() {
         return (
-            <div>
-                <table>
-                    <tr>
-                        <th>Favourite</th>
-                        <th>Thumbnail</th>
-                        <th>Title</th>
-                        <th>Delete</th>
-                    </tr>
+            <div className="video-list">
+                <h1 className="play-heading"><span className="red-heading">play</span>video</h1>
+                <table className="table">
                     {this.state.videoList}
                 </table>
             </div>

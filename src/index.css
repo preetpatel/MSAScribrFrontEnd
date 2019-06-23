@@ -9,6 +9,7 @@ body {
 .header {
   background-color: #F8F8F8;
   padding-top: 10px;
+  margin-bottom: 20px;
 }
 
 h1 {
@@ -19,4 +20,20 @@ h1 {
 
 .red-heading {
   color: #C1263A;
+}
+
+.play-heading {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.table {
+  font-size: 12px;
+}
+
+.video-list {
+  background-color: #F5F5F5;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 400px;
 }

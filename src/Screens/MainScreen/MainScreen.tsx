@@ -63,21 +63,32 @@ export default class MainScreen extends React.Component<IProps,IState>{
     public render() {
         return (<div>
             <Header person={this.props.person} addVideo={this.addVideo}/>
+            <div className="container">
+                <div className="row">
+                    <div className="col-8">
+                        <ReactPlayer
+                            ref = {this.setRef}
+                            controls = {true}
+                            width="100%"
+                            height="400px"
+                            url={this.state.playingURL}
+                            config={{
+                            youtube: {
+                                playerVars: { showinfo: 1 },
+                                preload: true
+                            }
+                            }
+                        }
+                        />
+                    </div>
+                    <div className="col-4">
+                        <VideoList mount={this.listMounted}/>
+                    </div>
+                </div>
+            </div>
+            
             <hr/>
-            <ReactPlayer
-                ref = {this.setRef}
-                controls = {true}
-                url={this.state.playingURL}
-                config={{
-                  youtube: {
-                    playerVars: { showinfo: 1 },
-                    preload: true
-                  }
-                }
-            }
-            />
-            <hr/>
-            <VideoList mount={this.listMounted}/>
+            
             <CaptionArea/>
         </div>)
     }
