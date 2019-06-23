@@ -85,11 +85,11 @@ export default class MainScreen extends React.Component<IProps,IState>{
                         <VideoList mount={this.listMounted}/>
                     </div>
                 </div>
+
+                <CaptionArea/>
             </div>
             
-            <hr/>
             
-            <CaptionArea/>
         </div>)
     }
 }

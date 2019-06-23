@@ -16,6 +16,7 @@ h1 {
   font-size: 28px;
   font-weight: 600;
   color: #6D6D6D;
+  float: left;
 }
 
 .red-heading {
@@ -31,9 +32,24 @@ h1 {
   font-size: 12px;
 }
 
+.table td, .table th {
+  padding: 7px;
+}
+
 .video-list {
   background-color: #F5F5F5;
   overflow-x: hidden;
   overflow-y: scroll;
   height: 400px;
+}
+
+.video-list button {
+  border: none;
+  background-color: #F5F5F5;
+}
+
+.caption-area {
+  background-color: #F5F5F5;
+  margin-top: 20px;
+  padding: 30px;
 }
