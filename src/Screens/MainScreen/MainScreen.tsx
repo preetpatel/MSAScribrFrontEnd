@@ -20,8 +20,7 @@ export default class MainScreen extends React.Component<IProps,IState>{
         this.state = {
             listCallback: null,
             player: null,
-            // got to love pewdiepie
-            playingURL:"https://www.youtube.com/watch?v=6NLy743EFIA",
+            playingURL:"https://www.youtube.com/watch?v=5OS_J_mfNYI",
             videoList:[],
         }
         console.log(this.props)

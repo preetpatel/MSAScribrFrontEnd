@@ -34,18 +34,18 @@ export default class VideoList extends React.Component<IProps,IState>{
             "videos" : [
                 {
                     "id" : 1,
-                    "title" : "Title of the video",
-                    "videoURL" : "https://www.youtube.com/watch?v=CYmTmWlsNhg",
+                    "title" : "Try not to laugh challenge 😂 - Cognitive Services | Microsoft Azure",
+                    "videoURL" : "https://www.youtube.com/watch?v=5OS_J_mfNYI",
                     // tslint:disable-next-line:object-literal-sort-keys
-                    "thumbnailURL" : "https://i.ytimg.com/vi/sDjLflpTm4o/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLALkmnewoGKLtGFmHSiDt0bDTLLgw",
+                    "thumbnailURL" : "https://i.ytimg.com/vi/5OS_J_mfNYI/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBeoJP0ynh-CBnGIPx7--OgbUEHCA",
                     "isFavourite" : "true"
                 },
                 {
                     "id" : 2,
-                    "title" : "Title of the video",
-                    "videoURL" : "https://www.youtube.com/watch?v=CYmTmWlsNhg",
+                    "title" : "HOW OLD? - CREATE A WEBSITE...FAST! | Microsoft Azure",
+                    "videoURL" : "https://www.youtube.com/watch?v=8tmeZ8oh_pA",
                     // tslint:disable-next-line:object-literal-sort-keys
-                    "thumbnail" : "https://i.ytimg.com/vi/sDjLflpTm4o/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLALkmnewoGKLtGFmHSiDt0bDTLLgw",
+                    "thumbnailURL" : "https://i.ytimg.com/vi/sDjLflpTm4o/hqdefault.jpg?sqp=-oaymwEYCNIBEHZIVfKriqkDCwgBFQAAiEIYAXAB&rs=AOn4CLALkmnewoGKLtGFmHSiDt0bDTLLgw",
                     "isFavourite" : "false"
                 }
             ]
