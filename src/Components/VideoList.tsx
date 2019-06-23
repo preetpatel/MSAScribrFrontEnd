@@ -104,10 +104,10 @@ export default class VideoList extends React.Component<IProps,IState>{
         }
         const output:any[] = []
         result.videos.forEach(video => {
-            output.push(<tr onClick={() => this.playVideo(video.videoURL)}>
+            output.push(<tr>
                 <td className="align-middle">{video.isFavourite === "true"?<Star/>:<StarBorder/>}</td>
-                <td className="align-middle"><img src={video.thumbnailURL} width="100px" alt="Thumbnail"/></td>
-                <td className="align-middle"><b>{video.title}</b></td>
+                <td className="align-middle" onClick={() => this.playVideo(video.videoURL)}><img src={video.thumbnailURL} width="100px" alt="Thumbnail"/></td>
+                <td className="align-middle" onClick={() => this.playVideo(video.videoURL)}><b>{video.title}</b></td>
                 <td className="align-middle"><button onClick={() => this.deleteVideo(video)}><Close/></button></td>
             </tr>)
         });
