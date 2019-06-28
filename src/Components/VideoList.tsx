@@ -21,11 +21,15 @@ export default class VideoList extends React.Component<IProps,IState>{
     }
 
     public logger = () => {
-        console.log(this.state.videoList)
+        console.log("test")
     }
 
-    public deleteVideo = (video:any) => {
-        console.log("deleting this video " + video);
+    public deleteVideo = (id:any) => {
+        fetch("https://msascribrapi.azurewebsites.net/api/Videos/"+id,{
+            method:'DELETE'
+        }).then(response => {
+            this.updateList()
+        })
     }
 
     public playVideo = (videoUrl:string) => {
@@ -33,89 +37,40 @@ export default class VideoList extends React.Component<IProps,IState>{
     }
 
     public updateList = () => {
-        // Make call to api
-        const result = {
-            "videos" : [
-                {
-                    "id" : 1,
-                    "title" : "Try not to laugh challenge 😂 - Cognitive Services | Microsoft Azure",
-                    "videoURL" : "https://www.youtube.com/embed/U6SlmoXWf3o",
-                    // tslint:disable-next-line:object-literal-sort-keys
-                    "thumbnailURL" : "https://i.ytimg.com/vi/5OS_J_mfNYI/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBeoJP0ynh-CBnGIPx7--OgbUEHCA",
-                    "isFavourite" : "true"
-                },
-                {
-                    "id" : 2,
-                    "title" : "HOW OLD? - CREATE A WEBSITE...FAST! | Microsoft Azure",
-                    "videoURL" : "https://www.youtube.com/embed/8tmeZ8oh_pA",
-                    // tslint:disable-next-line:object-literal-sort-keys
-                    "thumbnailURL" : "https://i.ytimg.com/vi/8tmeZ8oh_pA/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAyCGSFiiq_L8qussLnlTbJTD1TOA",
-                    "isFavourite" : "false"
-                },
-                {
-                    "id" : 3,
-                    "title" : "ARTIFICIAL INTELLIGENCE and MACHINE LEARNING | Microsoft Azure",
-                    "videoURL" : "https://www.youtube.com/embed/N7dmGJfHS6M&t=17s",
-                    // tslint:disable-next-line:object-literal-sort-keys
-                    "thumbnailURL" : "https://i.ytimg.com/vi/N7dmGJfHS6M/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAuzvFhwkJthTyw3ywVsdXNz2GEFw",
-                    "isFavourite" : "false"
-                },
-                {
-                    "id" : 4,
-                    "title" : "Learn SQL Database and RESTful Web API | Microsoft Azure",
-                    "videoURL" : "https://www.youtube.com/embed/U6SlmoXWf3o",
-                    // tslint:disable-next-line:object-literal-sort-keys
-                    "thumbnailURL" : "https://i.ytimg.com/vi/U6SlmoXWf3o/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLDNSQHBKYKvK1IoD4COj77sm0Uzfg",
-                    "isFavourite" : "false"
-                }, 
-                {
-                    "id" : 1,
-                    "title" : "Try not to laugh challenge 😂 - Cognitive Services | Microsoft Azure",
-                    "videoURL" : "https://www.youtube.com/embed/U6SlmoXWf3o",
-                    // tslint:disable-next-line:object-literal-sort-keys
-                    "thumbnailURL" : "https://i.ytimg.com/vi/5OS_J_mfNYI/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLBeoJP0ynh-CBnGIPx7--OgbUEHCA",
-                    "isFavourite" : "true"
-                },
-                {
-                    "id" : 2,
-                    "title" : "HOW OLD? - CREATE A WEBSITE...FAST! | Microsoft Azure",
-                    "videoURL" : "https://www.youtube.com/embed/8tmeZ8oh_pA",
-                    // tslint:disable-next-line:object-literal-sort-keys
-                    "thumbnailURL" : "https://i.ytimg.com/vi/8tmeZ8oh_pA/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAyCGSFiiq_L8qussLnlTbJTD1TOA",
-                    "isFavourite" : "false"
-                },
-                {
-                    "id" : 3,
-                    "title" : "ARTIFICIAL INTELLIGENCE and MACHINE LEARNING | Microsoft Azure",
-                    "videoURL" : "https://www.youtube.com/embed/N7dmGJfHS6M&t=17s",
-                    // tslint:disable-next-line:object-literal-sort-keys
-                    "thumbnailURL" : "https://i.ytimg.com/vi/N7dmGJfHS6M/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLAuzvFhwkJthTyw3ywVsdXNz2GEFw",
-                    "isFavourite" : "false"
-                },
-                {
-                    "id" : 4,
-                    "title" : "Learn SQL Database and RESTful Web API | Microsoft Azure",
-                    "videoURL" : "https://www.youtube.com/embed/U6SlmoXWf3o",
-                    // tslint:disable-next-line:object-literal-sort-keys
-                    "thumbnailURL" : "https://i.ytimg.com/vi/U6SlmoXWf3o/hqdefault.jpg?sqp=-oaymwEZCNACELwBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLDNSQHBKYKvK1IoD4COj77sm0Uzfg",
-                    "isFavourite" : "false"
-                }
-            ]
-        }
-        const output:any[] = []
-        result.videos.forEach(video => {
-            output.push(<tr>
-                <td className="align-middle">{video.isFavourite === "true"?<Star/>:<StarBorder/>}</td>
-                <td className="align-middle" onClick={() => this.playVideo(video.videoURL)}><img src={video.thumbnailURL} width="100px" alt="Thumbnail"/></td>
-                <td className="align-middle" onClick={() => this.playVideo(video.videoURL)}><b>{video.title}</b></td>
-                <td className="align-middle"><button onClick={() => this.deleteVideo(video)}><Close/></button></td>
-            </tr>)
-        });
-        this.setState({videoList:output},() => this.forceUpdate())
+        fetch('https://msascribrapi.azurewebsites.net/api/Videos',{
+            method:'GET'
+        }).then((ret:any) => {
+            return ret.json();
+        }).then((result:any) => {
+            console.log(result)
+            const output:any[] = []
+            result.forEach((video:any) => {
+                output.push(<tr>
+                    <td className="align-middle" onClick={() => this.handleLike(video)}>{video.isFavourite === true?<Star/>:<StarBorder/>}</td>
+                    <td className="align-middle" onClick={() => this.playVideo(video.webUrl)}><img src={video.thumbnailUrl} width="100px" alt="Thumbnail"/></td>
+                    <td className="align-middle" onClick={() => this.playVideo(video.webUrl)}><b>{video.videoTitle}</b></td>
+                    <td className="align-middle"><button onClick={() => this.deleteVideo(video.videoId)}><Close/></button></td>
+                </tr>)
+            });
+            this.setState({videoList:output})
+        })
     }
 
     public handleLike = (video:any) => {
-        // Make call to api for like
+        let bool = video.isFavourite
+        bool = !bool
+        fetch("https://msascribrapi.azurewebsites.net/api/Videos/update/"+video.videoId, {
+            body: "[ { \"value\": " + bool + ", \"path\": \"/isFavourite\", \"op\": \"replace\", \"from\": \"\" }]",
+            headers: {
+              Accept: "text/plain",
+              "Content-Type": "application/json-patch+json"
+            },
+            method: "PATCH"
+          }).then(response => {
+              return response.json()
+          }).then(ret => {
+              this.updateList();
+          })
     }
     
     public componentDidMount = () => {

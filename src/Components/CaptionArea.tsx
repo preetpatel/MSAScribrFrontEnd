@@ -5,8 +5,9 @@ import Search from '@material-ui/icons/Search'
 import * as React from 'react'
 
 interface IState {
-    input: string
-    result: any
+    input: string,
+    result: any,
+    body:any,
 }
 
 interface IProps {
@@ -17,71 +18,52 @@ export default class CaptionArea extends React.Component<IProps, IState>{
     public constructor(props: any) {
         super(props);
         this.state = {
+            body: [],
             input: "",
-            result: {
-                "videoCount": "2",
-                "videos": [
-                    {
-                        "matchingCaptions": [
-                            {
-                                "matchingCaption": "Luckily I happen to have a working quantum computer.",
-                                "time": "19",
-                                "timedURL": "119",
-                            }
-                        ],
-                        "title": "Title of the video",
-                        "videoID": "1",
-                    },
-                    {
-                        "matchingCaptions": [
-                            {
-                                "matchingCaption": "Luckily I happen to have a working quantum .",
-                                "time": "19",
-                                "timedURL": "219",
-                            },
-                            {
-                                "matchingCaption": "I happen to have a working quantum computer.",
-                                "time": "19",
-                                "timedURL": "3 19",
-                            },
-                            
-                        ],
-                        "title": "Title of the vide o",
-                        "videoID": "2",
-                    },
-                ]
-            }
+            result: [],
         }
     }
+        
 
     public search = () => {
-        // make call to the api
+        console.log(this.state.input)
+        fetch("https://msascribrapi.azurewebsites.net/api/Videos/SearchByTranscriptions/"+this.state.input, {
+            headers: {
+              Accept: "text/plain"
+            }
+        }).then(response => {
+            return response.json()
+        }).then(answer => {
+            this.setState({result:answer})
+        }).then(() => {
+            this.makeTableBody(this.state.result)
+        })
     }
 
-    public handleTableClick = (timedURL: string) => {
-        this.props.play(timedURL)
+    public handleTableClick = (videoUrl:any, timedURL: string) => {
+        this.props.play(videoUrl + "&t=" + timedURL + "s")
     }
 
     public makeTableBody = (searchObject: any) => {
         const toRet: any[] = [];
+        console.log(searchObject)
         const errorCase = <div><p>Sorry you need to still search</p></div>
-        if (!("videos" in searchObject)) {
-            return errorCase
-        }
-        searchObject.videos.forEach((video: any) => {
-            video.matchingCaptions.forEach((caption: any) => {
+        searchObject.forEach((video: any) => {
+            video.transcription.forEach((caption: any) => {
                 toRet.push(
-                    <tr onClick={() => this.handleTableClick(caption.timedURL)}>
-                        <td>{caption.time}</td>
-                        <td>{caption.matchingCaption}</td>
-                        <td>{video.title}</td>
+                    <tr onClick={() => this.handleTableClick(video.webUrl,caption.startTime)}>
+                        <td>{caption.startTime}</td>
+                        <td>{caption.phrase}</td>
+                        <td>{video.videoTitle}</td>
                     </tr>)
             })
         });
         if (toRet.length === 0) {
-            return errorCase
+            this.setState({body:errorCase})
         }
-        return toRet
+        else{
+            this.setState({body:toRet})
+        }
     }
 
     public render() {
@@ -103,7 +85,7 @@ export default class CaptionArea extends React.Component<IProps, IState>{
                             value={this.state.input}
                             InputProps={{
                                 endAdornment: <InputAdornment position="end">
-                                    <IconButton onClick={this.search}>
+                                    <IconButton onClick={() => this.search()}>
                                         <Search />
                                     </IconButton>
                                 </InputAdornment>
@@ -119,7 +101,7 @@ export default class CaptionArea extends React.Component<IProps, IState>{
                         <th>Video</th>
                     </tr>
                     <tbody className="captionTable">
-                        {this.makeTableBody(this.state.result)}
+                        {this.state.body}
                     </tbody>
                 </table>
             </div>
