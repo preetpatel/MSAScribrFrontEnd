@@ -49,7 +49,7 @@ export default class VideoList extends React.Component<IProps,IState>{
                     <td className="align-middle" onClick={() => this.handleLike(video)}>{video.isFavourite === true?<Star/>:<StarBorder/>}</td>
                     <td className="align-middle" onClick={() => this.playVideo(video.webUrl)}><img src={video.thumbnailUrl} width="100px" alt="Thumbnail"/></td>
                     <td className="align-middle" onClick={() => this.playVideo(video.webUrl)}><b>{video.videoTitle}</b></td>
-                    <td className="align-middle"><button onClick={() => this.deleteVideo(video.videoId)}><Close/></button></td>
+                    <td className="align-middle video-list-close"><button onClick={() => this.deleteVideo(video.videoId)}><Close/></button></td>
                 </tr>)
             });
             this.setState({videoList:output})
