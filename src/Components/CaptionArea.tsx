@@ -26,29 +26,29 @@ export default class CaptionArea extends React.Component<IProps, IState>{
         
 
     public search = () => {
-        console.log(this.state.input)
-        fetch("https://msascribrapi.azurewebsites.net/api/Videos/SearchByTranscriptions/"+this.state.input, {
-            headers: {
-              Accept: "text/plain"
-            }
-        }).then(response => {
-            return response.json()
-        }).then(answer => {
-            this.setState({result:answer})
-        }).then(() => {
-            this.makeTableBody(this.state.result)
-        })
+        if(this.state.input === "" || this.state.input.trim() === ""){
+            this.setState({result:[]},()=>this.makeTableBody())
+        }else{
+            fetch("https://msascribrapi.azurewebsites.net/api/Videos/SearchByTranscriptions/"+this.state.input, {
+                headers: {
+                  Accept: "text/plain"
+                }
+            }).then(response => {
+                return response.json()
+            }).then(answer => {
+                this.setState({result:answer},()=>this.makeTableBody())
+            })
+        }
     }
 
     public handleTableClick = (videoUrl:any, timedURL: string) => {
         this.props.play(videoUrl + "&t=" + timedURL + "s")
     }
 
-    public makeTableBody = (searchObject: any) => {
+    public makeTableBody = () => {
         const toRet: any[] = [];
-        console.log(searchObject)
         const errorCase = <div><p>Sorry you need to still search</p></div>
-        searchObject.forEach((video: any) => {
+        this.state.result.forEach((video: any) => {
             video.transcription.forEach((caption: any) => {
                 toRet.push(
                     <tr onClick={() => this.handleTableClick(video.webUrl,caption.startTime)}>
