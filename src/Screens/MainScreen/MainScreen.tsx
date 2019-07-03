@@ -3,8 +3,8 @@ import ReactPlayer from 'react-player'
 import CaptionArea from 'src/Components/CaptionArea'
 import Header from 'src/Components/Header'
 import VideoList from 'src/Components/VideoList'
-interface IProps {
-    person: object
+ interface IProps {
+     person: object
 }
 
 interface IState {
@@ -20,7 +20,7 @@ export default class MainScreen extends React.Component<IProps, IState>{
         this.state = {
             listCallback: null,
             player: null,
-            playingURL: "https://www.youtube.com/watch?v=5OS_J_mfNYI",
+            playingURL: "",
             videoList: [],
         }
         console.log(this.props)
@@ -75,6 +75,7 @@ export default class MainScreen extends React.Component<IProps, IState>{
                 <div className="row">
                     <div className="col-7">
                         <ReactPlayer
+                            className = "player"
                             ref={this.setRef}
                             controls={true}
                             url={this.state.playingURL}
@@ -95,7 +96,7 @@ export default class MainScreen extends React.Component<IProps, IState>{
                     </div>
                 </div>
 
-                <CaptionArea play={this.updateURL} />
+                <CaptionArea currentVideo={this.state.playingURL} play={this.updateURL} />
             </div>
         </div>)
     }

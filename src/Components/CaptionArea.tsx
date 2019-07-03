@@ -11,6 +11,7 @@ interface IState {
 }
 
 interface IProps {
+    currentVideo:any,
     play: any
 }
 
@@ -47,7 +48,18 @@ export default class CaptionArea extends React.Component<IProps, IState>{
 
     public makeTableBody = () => {
         const toRet: any[] = [];
-        const errorCase = <div><p>Sorry you need to still search</p></div>
+        this.state.result.sort((a:{webUrl: string; videoTitle: string}, b:{webUrl: string; videoTitle: string;})=>{
+            if(a.webUrl === b.webUrl){
+                return 0;
+            }else if(a.webUrl === this.props.currentVideo){
+                return -1;
+            }else if(b.webUrl === this.props.currentVideo){
+                return 1;
+            }
+            else{
+                return a.videoTitle.localeCompare(b.videoTitle);
+            }
+        })
         this.state.result.forEach((video: any) => {
             video.transcription.forEach((caption: any) => {
                 toRet.push(
@@ -59,7 +71,13 @@ export default class CaptionArea extends React.Component<IProps, IState>{
             })
         });
         if (toRet.length === 0) {
-            this.setState({body:errorCase})
+            if(this.state.input === ""){
+                const errorCase = <div><p>Sorry you need to still search</p></div>
+                this.setState({body:errorCase})
+            }else{
+                const errorCase = <div><p>Sorry no results were returned for "{this.state.input}"</p></div>
+                this.setState({body:errorCase})
+            }
         }
         else{
             this.setState({body:toRet})
