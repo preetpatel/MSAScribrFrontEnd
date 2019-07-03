@@ -34,7 +34,7 @@ export default class Header extends React.Component<IProps,IState> {
                 <div className="container">
                     <div className="row">
                         <div className="col-2 justify-content-center align-self-center">
-                            <h1><span className="red-heading">like</span>&amp;scribr</h1>
+                            <h1><span className="red-heading">Like</span>&amp;Scribr</h1>
                         </div>
                         <div className="col-10">
                             <TextField
