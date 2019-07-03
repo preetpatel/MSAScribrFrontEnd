@@ -3,7 +3,7 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField'
 import AddCircle from '@material-ui/icons/AddCircle'
 import * as React from 'react';
-import SideMenu from 'src/Components/SideMenu';
+import 'src/App.css'
 
 interface IProps{
     addVideo:any,
@@ -37,7 +37,6 @@ export default class Header extends React.Component<IProps,IState> {
                             <h1><span className="red-heading">like</span>&amp;scribr</h1>
                         </div>
                         <div className="col-10">
-                            <SideMenu person={this.props.person} />
                             <TextField
                             id= "Search-Bar"
                             className = "SearchBar"
