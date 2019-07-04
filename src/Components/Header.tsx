@@ -3,17 +3,14 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import TextField from '@material-ui/core/TextField'
 import AddCircle from '@material-ui/icons/AddCircle'
 import * as React from 'react';
-import 'src/App.css'
 
 interface IProps{
     addVideo:any,
-    person:object
 }
 
 interface IState{
     input:string
 }
-
 
 export default class Header extends React.Component<IProps,IState> {
     public constructor(props:any){
@@ -23,7 +20,6 @@ export default class Header extends React.Component<IProps,IState> {
         }
     }
 
-    // Probably good to do some checking here but I really cbf
     public addVideo = () =>{            
         this.props.addVideo(this.state.input)
     }

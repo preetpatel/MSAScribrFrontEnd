@@ -23,7 +23,7 @@ export default class VideoList extends React.Component<IProps,IState>{
     public deleteVideo = (id:any) => {
         fetch("https://msascribrapi.azurewebsites.net/api/Videos/"+id,{
             method:'DELETE'
-        }).then(response => {
+        }).then(() => {
             this.updateList()
         })
     }
@@ -38,7 +38,6 @@ export default class VideoList extends React.Component<IProps,IState>{
         }).then((ret:any) => {
             return ret.json();
         }).then((result:any) => {
-            console.log(result)
             const output:any[] = []
             result.forEach((video:any) => {
                 const row = (<tr>
@@ -80,6 +79,8 @@ export default class VideoList extends React.Component<IProps,IState>{
         this.props.mount(this)
         this.updateList()
     }
+
+
 
     public render() {
         return (

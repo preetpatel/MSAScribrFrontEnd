@@ -96,27 +96,34 @@ In this code we first perform a GET requeest via the fetch api. Then we convert 
 
 ## 3.2 Handling Liking of Videos
 
-To handle the liking of videos we need to make an update to the video. Looking at our API at `https://msascribrapi.azurewebsites.net/` we will need to use the Patch Request for videos. This is under `https://msascribrapi.azurewebsites.net/api/Videos/Update/{id}` for this request we need to replace {id} with the id of the video that we are looking to update. This api call requires an array to be passed in which contains an object. It requires a few key value pairs which will 
+To handle the liking of videos we need to make an update to the video. Looking at our API at `https://msascribrapi.azurewebsites.net/` we will need to use the Patch Request for videos. This is under `https://msascribrapi.azurewebsites.net/api/Videos/Update/{id}` for this request we need to replace {id} with the id of the video that we are looking to update. This api call requires an array to be passed in which contains an object. It requires a few key value pairs which will be, `from` which we can leave blank. It requires what operation which is under `op` which will be replace for us. It also requires the `path` of the variable we want to change and the `value` of the update variable.
 
-```javascript
-    public handleLike = (video:any) => {
-        const toSend = [{
-            "from":"",
-            "op":"replace",
-            "path":"/isFavourite",
-            "value":!video.isFavourite,
-        }]
-        fetch("https://msascribrapi.azurewebsites.net/api/Videos/update/"+video.videoId, {
-            body:JSON.stringify(toSend),
-            headers: {
-              Accept: "text/plain",
-              "Content-Type": "application/json-patch+json"
-            },
-            method: "PATCH"
-          }).then(response => {
-              return response.json()
-          }).then(() => {
-              this.updateList();
-          })
-    }
+So lets begin by adding the following code to the `handleLike()` function in the `VideoList.tsx` file. 
+
+```typescript
+public handleLike = (video:any) => {
+    const toSend = [{
+        "from":"",
+        "op":"replace",
+        "path":"/isFavourite",
+        "value":!video.isFavourite,
+    }]
+    fetch("https://msascribrapi.azurewebsites.net/api/Videos/update/"+video.videoId, {
+        body:JSON.stringify(toSend),
+        headers: {
+            Accept: "text/plain",
+            "Content-Type": "application/json-patch+json"
+        },
+        method: "PATCH"
+        }).then(() => {
+            this.updateList();
+        })
+}
 ```
+This code is first building the JSON object which we need to send as a payload in the body of the request. To send the JSON object we need to first convert it into a string which can be done by the `JSON.stringfy()` method. Then when a response is received we can attempt to update the list by calling the method which was previously created.
+
+
+
+## 3.3 Deleting Videos
+
+Finally we want to be able to give users a chance to delete Videos which they have created.

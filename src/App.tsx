@@ -1,36 +1,85 @@
 import * as React from 'react';
-import LoginScreen from './Screens/LoginScreen/LoginScreen'
-import MainScreen from './Screens/MainScreen/MainScreen';
+import ReactPlayer from 'react-player';
+import CaptionArea from 'src/Components/CaptionArea';
+import Header from 'src/Components/Header';
+import VideoList from 'src/Components/VideoList';
+import 'src/App.css'
 
-
-interface IState{
-  loggedIn:boolean,
-  person:any,
+interface IState {
+  updateVideoList: any,
+  player: any,
+  playingURL: string
+  videoList: object
 }
 
-class App extends React.Component<{},IState> {
-  public constructor(props:any){
+class App extends React.Component<{}, IState>{
+  public constructor(props: any) {
     super(props);
     this.state = {
-      loggedIn: true,
-      person:{},
+      player: null,
+      playingURL: "",
+      updateVideoList: null,
+      videoList: [],
     }
   }
 
-  public handleLoginChange = (update:boolean, Person:any) => {
-    console.log("called this function with" + update + Person)  
+  public setRef = (playerRef: any) => {
     this.setState({
-        loggedIn:update,
-        person:Person
-      })
+      player: playerRef
+    })
+  }
+
+  public addVideo = (url: string) => {
+    fetch("https://msascribrapi.azurewebsites.net/api/Videos", {
+      body: "{ \"url\": \"" + url + "\"}",
+      headers: {
+        Accept: "text/plain",
+        "Content-Type": "application/json-patch+json"
+      },
+      method: "POST"
+    }).then(() => {
+      this.state.updateVideoList();
+    })
+  }
+
+  public updateURL = (url: string) => {
+    this.setState({ playingURL: url })
+  }
+
+  public listMounted = (callbacks: any) => {
+    this.setState({ updateVideoList: callbacks })
   }
 
   public render() {
-      if(this.state.loggedIn === true){
-         return <MainScreen person={this.state.person}/>
-      }else{
-        return <LoginScreen loginHandler={this.handleLoginChange}/>
-      }
+    return (<div>
+      <Header addVideo={this.addVideo} />
+      <div className="container">
+        <div className="row">
+          <div className="col-7">
+            <ReactPlayer
+              className="player"
+              ref={this.setRef}
+              controls={true}
+              url={this.state.playingURL}
+              width="100%"
+              height="400px"
+              playing={true}
+              config={{
+                youtube: {
+                  playerVars: { showinfo: 1 },
+                  preload: true
+                }
+              }
+              }
+            />
+          </div>
+          <div className="col-5">
+            <VideoList play={this.updateURL} mount={this.listMounted} />
+          </div>
+        </div>
+        <CaptionArea currentVideo={this.state.playingURL} play={this.updateURL} />
+      </div>
+    </div>)
   }
 }
 
