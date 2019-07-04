@@ -20,10 +20,6 @@ export default class VideoList extends React.Component<IProps,IState>{
         }
     }
 
-    public logger = () => {
-        console.log("test")
-    }
-
     public deleteVideo = (id:any) => {
         fetch("https://msascribrapi.azurewebsites.net/api/Videos/"+id,{
             method:'DELETE'
@@ -62,10 +58,14 @@ export default class VideoList extends React.Component<IProps,IState>{
     }
 
     public handleLike = (video:any) => {
-        let bool = video.isFavourite
-        bool = !bool
+        const toSend = [{
+            "from":"",
+            "op":"replace",
+            "path":"/isFavourite",
+            "value":!video.isFavourite,
+        }]
         fetch("https://msascribrapi.azurewebsites.net/api/Videos/update/"+video.videoId, {
-            body: "[ { \"value\": " + bool + ", \"path\": \"/isFavourite\", \"op\": \"replace\", \"from\": \"\" }]",
+            body:JSON.stringify(toSend),
             headers: {
               Accept: "text/plain",
               "Content-Type": "application/json-patch+json"
@@ -73,7 +73,7 @@ export default class VideoList extends React.Component<IProps,IState>{
             method: "PATCH"
           }).then(response => {
               return response.json()
-          }).then(ret => {
+          }).then(() => {
               this.updateList();
           })
     }
@@ -82,8 +82,6 @@ export default class VideoList extends React.Component<IProps,IState>{
         this.props.mount(this)
         this.updateList()
     }
-
-
 
     public render() {
         return (
