@@ -71,8 +71,6 @@ export default class VideoList extends React.Component<IProps,IState>{
               "Content-Type": "application/json-patch+json"
             },
             method: "PATCH"
-          }).then(response => {
-              return response.json()
           }).then(() => {
               this.updateList();
           })
