@@ -18,6 +18,7 @@ export default class VideoList extends React.Component<IProps,IState>{
         this.state = {
             videoList: []
         }
+        this.updateList();
     }
 
     public deleteVideo = (id:any) => {
@@ -76,7 +77,7 @@ export default class VideoList extends React.Component<IProps,IState>{
     }
     
     public componentDidMount = () => {
-        this.props.mount(this)
+        this.props.mount(this.updateList)
         this.updateList()
     }
 
