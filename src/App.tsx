@@ -30,11 +30,12 @@ class App extends React.Component<{}, IState>{
   }
 
   public addVideo = (url: string) => {
+    const body = {"url": url}
     fetch("https://msascribrapi.azurewebsites.net/api/Videos", {
-      body: "{ \"url\": \"" + url + "\"}",
+      body: JSON.stringify(body),
       headers: {
         Accept: "text/plain",
-        "Content-Type": "application/json-patch+json"
+        "Content-Type": "application/json"
       },
       method: "POST"
     }).then(() => {

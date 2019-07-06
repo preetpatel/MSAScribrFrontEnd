@@ -27,13 +27,14 @@ export default class CaptionArea extends React.Component<IProps, IState>{
         
 
     public search = () => {
-        if(this.state.input === "" || this.state.input.trim() === ""){
+        if(this.state.input.trim() === ""){
             this.setState({result:[]},()=>this.makeTableBody())
         }else{
             fetch("https://msascribrapi.azurewebsites.net/api/Videos/SearchByTranscriptions/"+this.state.input, {
                 headers: {
                   Accept: "text/plain"
-                }
+                },
+                method:"GET"
             }).then(response => {
                 return response.json()
             }).then(answer => {
@@ -48,7 +49,7 @@ export default class CaptionArea extends React.Component<IProps, IState>{
 
     public makeTableBody = () => {
         const toRet: any[] = [];
-        this.state.result.sort((a:{webUrl: string; videoTitle: string}, b:{webUrl: string; videoTitle: string;})=>{
+        this.state.result.sort((a:any, b:any)=>{
             if(a.webUrl === b.webUrl){
                 return 0;
             }else if(a.webUrl === this.props.currentVideo){
@@ -71,7 +72,7 @@ export default class CaptionArea extends React.Component<IProps, IState>{
             })
         });
         if (toRet.length === 0) {
-            if(this.state.input === ""){
+            if(this.state.input.trim() === ""){
                 const errorCase = <div><p>Sorry you need to still search</p></div>
                 this.setState({body:errorCase})
             }else{
