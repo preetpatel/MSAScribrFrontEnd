@@ -44,6 +44,7 @@ export default class CaptionArea extends React.Component<IProps, IState>{
     }
 
     public handleTableClick = (videoUrl:any, timedURL: string) => {
+        window.scrollTo(0,0);
         this.props.play(videoUrl + "&t=" + timedURL + "s")
     }
 
