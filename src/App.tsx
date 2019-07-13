@@ -44,7 +44,11 @@ class App extends React.Component<{}, IState>{
   }
 
   public updateURL = (url: string) => {
-    this.setState({ playingURL: url })
+    if(this.state.playingURL === url){
+      this.setState({playingURL : ""},() => this.setState({playingURL: url}))
+    }else{
+      this.setState({playingURL:url})
+    }
   }
 
   public listMounted = (callbacks: any) => {
