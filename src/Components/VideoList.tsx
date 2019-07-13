@@ -22,7 +22,7 @@ export default class VideoList extends React.Component<IProps,IState>{
     }
 
     public deleteVideo = (id:any) => {
-        fetch("https://msascribrapi.azurewebsites.net/api/Videos/"+id,{
+        fetch("https://scriberapi.azurewebsites.net/api/Videos/"+id,{
             method:'DELETE'
         }).then(() => {
             this.updateList()
@@ -34,7 +34,7 @@ export default class VideoList extends React.Component<IProps,IState>{
     }
 
     public updateList = () => {
-        fetch('https://msascribrapi.azurewebsites.net/api/Videos',{
+        fetch('https://scriberapi.azurewebsites.net/api/Videos',{
             method:'GET'
         }).then((ret:any) => {
             return ret.json();
@@ -64,7 +64,7 @@ export default class VideoList extends React.Component<IProps,IState>{
             "path":"/isFavourite",
             "value":!video.isFavourite,
         }]
-        fetch("https://msascribrapi.azurewebsites.net/api/Videos/update/"+video.videoId, {
+        fetch("https://scriberapi.azurewebsites.net/api/Videos/update/"+video.videoId, {
             body:JSON.stringify(toSend),
             headers: {
               Accept: "text/plain",

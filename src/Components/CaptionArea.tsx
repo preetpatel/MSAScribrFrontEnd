@@ -30,7 +30,7 @@ export default class CaptionArea extends React.Component<IProps, IState>{
         if(this.state.input.trim() === ""){
             this.setState({result:[]},()=>this.makeTableBody())
         }else{
-            fetch("https://msascribrapi.azurewebsites.net/api/Videos/SearchByTranscriptions/"+this.state.input, {
+            fetch("https://scriberapi.azurewebsites.net/api/Videos/SearchByTranscriptions/"+this.state.input, {
                 headers: {
                   Accept: "text/plain"
                 },
